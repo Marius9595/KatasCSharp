@@ -1,6 +1,6 @@
 namespace TestMarsRovers;
 
-public class Tests
+public class MarsRoversNavigatorShould
 {
     [SetUp]
     public void Setup()
@@ -8,7 +8,7 @@ public class Tests
     }
 
     [Test]
-    public void Test1()
+    public void test__()
     {
         Assert.Pass();
     }
