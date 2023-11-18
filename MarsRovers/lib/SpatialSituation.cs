@@ -8,4 +8,18 @@ public enum Direction
     West
 }
 
-public record SpatialSituation(Coordinates coordinates, Direction orientation);
+public class SpatialSituation
+{
+    private readonly Coordinates _coordinates;
+    private readonly Direction _orientation;
+
+    public SpatialSituation(Coordinates coordinates, Direction direction)
+    {
+        this._coordinates = coordinates;
+        this._orientation = direction;
+    }
+
+    public Direction Orientation => _orientation;
+
+    public Coordinates Coordinates => _coordinates;
+}
