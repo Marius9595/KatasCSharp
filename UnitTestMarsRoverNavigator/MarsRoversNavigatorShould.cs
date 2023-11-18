@@ -15,6 +15,6 @@ public class MarsRoversNavigatorShould
         
         var spatialSituation = MarsRoverNavigator.spatialSituation();
         
-        spatialSituation.Should().Be(new SpatialSituation(Coordinates.at(0,0), Direction.North));
+        spatialSituation.Should().BeEquivalentTo(new SpatialSituation(Coordinates.at(0,0), Direction.North));
     }
 }

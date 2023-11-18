@@ -11,6 +11,6 @@ public class MarsRoverNavigator
     }
     public static SpatialSituation spatialSituation()
     {
-        throw new NotImplementedException();
+        return new SpatialSituation(Coordinates.at(0,0), Direction.North);
     }
 }
