@@ -16,7 +16,7 @@ public class MarsRoversNavigatorShould
     
     
     [Fact]
-    public void start_always_with_the_same_spatial_situation()
+    public void start_always_at_same_spatial_situation()
     {
         var marsRoverNavigator = new MarsRoverNavigator(obstacleDetectorMock.Object, satelliteMock.Object);
         
