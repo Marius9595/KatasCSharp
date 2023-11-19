@@ -6,12 +6,18 @@ namespace UnitTestMarsRoverNavigator;
 
 public class MarsRoversNavigatorShould
 {
+    Mock<ObstacleDetector> obstacleDetectorMock;
+    Mock<Satellite> satelliteMock;
+    public MarsRoversNavigatorShould()
+    {
+        obstacleDetectorMock = new Mock<ObstacleDetector>();
+        satelliteMock = new Mock<Satellite>();
+    }
+    
+    
     [Fact]
     public void start_always_with_the_same_spatial_situation()
     {
-        var obstacleDetectorMock = new Mock<ObstacleDetector>();
-        var satelliteMock = new Mock<Satellite>();
-        
         var marsRoverNavigator = new MarsRoverNavigator(obstacleDetectorMock.Object, satelliteMock.Object);
         
         marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,0), Direction.North));
@@ -21,9 +27,7 @@ public class MarsRoversNavigatorShould
         public void determine_the_next_forward_coordinates()
         {
             var nextForwardCoordinates = new Coordinates(0,1);
-            var obstacleDetectorMock = new Mock<ObstacleDetector>();
             obstacleDetectorMock.Setup(x => x.isThereAnObstacleAt(nextForwardCoordinates)).Returns(false);
-            var satelliteMock = new Mock<Satellite>();
             satelliteMock.Setup(x => x.isExceedingTheBoundaries(nextForwardCoordinates)).Returns(false);
             var marsRoverNavigator = new MarsRoverNavigator(obstacleDetectorMock.Object, satelliteMock.Object);
             
@@ -37,9 +41,7 @@ public class MarsRoversNavigatorShould
         [Fact]
         public void change_its_orientation_to_the_next_left_hand_direction_when_it_turns_left()
         {
-            var obstacleDetectorMock = new Mock<ObstacleDetector>();
             obstacleDetectorMock.Setup(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>())).Returns(false);
-            var satelliteMock = new Mock<Satellite>();
             satelliteMock.Setup(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>())).Returns(false);
             var marsRoverNavigator = new MarsRoverNavigator(obstacleDetectorMock.Object, satelliteMock.Object);
             
