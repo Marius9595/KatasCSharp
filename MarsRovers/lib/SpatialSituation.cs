@@ -12,7 +12,7 @@ public class SpatialSituation
 {
     private readonly Coordinates _coordinates;
     private readonly Direction _orientation;
-
+    
     public SpatialSituation(Coordinates coordinates, Direction direction)
     {
         this._coordinates = coordinates;
@@ -22,5 +22,4 @@ public class SpatialSituation
     public Direction Orientation => _orientation;
 
     public Coordinates Coordinates => _coordinates;
-    public Direction Direction { get; }
 }

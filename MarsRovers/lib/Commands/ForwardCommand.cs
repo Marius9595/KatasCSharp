@@ -5,7 +5,7 @@ public class ForwardCommand : Command
     public SpatialSituation executeWith(SpatialSituation spatialSituation)
     {
         var coordinates = spatialSituation.Coordinates;
-        var direction = spatialSituation.Direction;
+        var direction = spatialSituation.Orientation;
         switch (direction)
         {
             case Direction.North:
