@@ -8,15 +8,12 @@ public class Commands
     {
         this.commands = commands;
     }
-
-    public SpatialSituation executeWith(SpatialSituation spatialSituation)
+    
+    public void forEach(Func<Command, SpatialSituation> func)
     {
-        var newSpatialSituation = spatialSituation;
         foreach (var command in commands)
         {
-            newSpatialSituation = command.executeWith(newSpatialSituation);
+            func(command);
         }
-        
-        return newSpatialSituation;
     }
 }

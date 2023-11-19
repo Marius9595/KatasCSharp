@@ -18,16 +18,20 @@ public class MarsRoverNavigator
 
     public void executeCommands(Commands commands)
     {
-        var newSpatialSituation = commands.executeWith(_spatialSituation);
-        if (_obstacleDetector.isThereAnObstacleAt(newSpatialSituation.Coordinates))
+        var newSpatialSituation = _spatialSituation;
+        commands.forEach((command) =>
         {
-            
-        }
-        if (_satellite.isExceedingTheBoundaries(newSpatialSituation.Coordinates))
-        {
-            
-        }
+            newSpatialSituation = command.executeWith(newSpatialSituation);
+            if (_obstacleDetector.isThereAnObstacleAt(newSpatialSituation.Coordinates))
+            {
+            }
+                
+            if (_satellite.isExceedingTheBoundaries(newSpatialSituation.Coordinates))
+            {
+            }
 
-        this._spatialSituation = newSpatialSituation;
+            return newSpatialSituation;
+        });
+        _spatialSituation = newSpatialSituation;
     }
 }

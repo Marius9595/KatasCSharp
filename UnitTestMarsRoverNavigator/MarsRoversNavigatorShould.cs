@@ -68,8 +68,8 @@ public class MarsRoversNavigatorShould
             marsRoverNavigator.executeCommands(turnLeftMultipleTimes);
             
             marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,0), finalOrientation));
-            obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>()), Times.Once);
-            satelliteMock.Verify(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>()), Times.Once);
+            obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>()), Times.AtLeastOnce);
+            satelliteMock.Verify(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>()), Times.AtLeastOnce);
         }
         
         public static IEnumerable<object[]> CommandsToTurnRightMultipleTimes
@@ -103,8 +103,8 @@ public class MarsRoversNavigatorShould
             marsRoverNavigator.executeCommands(turnRightMultipleTimes);
             
             marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,0), finalOrientation));
-            obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>()), Times.Once);
-            satelliteMock.Verify(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>()), Times.Once);
+            obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>()), Times.AtLeastOnce);
+            satelliteMock.Verify(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>()), Times.AtLeastOnce);
         }
         
         
@@ -118,8 +118,8 @@ public class MarsRoversNavigatorShould
             var moveMultipleTimesForward = new Commands(new List<Command> {new ForwardCommand(),new ForwardCommand()});
             
             marsRoverNavigator.executeCommands(moveMultipleTimesForward);
-            marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,2), Direction.North));
-            obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(finalCoordinates), Times.Once);
-            satelliteMock.Verify(x => x.isExceedingTheBoundaries(finalCoordinates), Times.Once);
+            marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(finalCoordinates, Direction.North));
+            obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(finalCoordinates), Times.AtLeastOnce);
+            satelliteMock.Verify(x => x.isExceedingTheBoundaries(finalCoordinates), Times.AtLeastOnce);
         }
 }       
