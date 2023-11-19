@@ -22,4 +22,5 @@ public class SpatialSituation
     public Direction Orientation => _orientation;
 
     public Coordinates Coordinates => _coordinates;
+    public Direction Direction { get; }
 }
