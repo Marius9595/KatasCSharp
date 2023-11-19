@@ -9,15 +9,25 @@ public class MarsRoverNavigator
     {
         this._obstacleDetector = obstacleDetector;
         this._satellite = satellite;
-        this._spatialSituation = new SpatialSituation(Coordinates.at(0, 0), Direction.North);
+        this._spatialSituation = new SpatialSituation(new Coordinates(0, 0), Direction.North);
     }
     public  SpatialSituation spatialSituation()
     {
-        return new SpatialSituation(Coordinates.at(0,0), Direction.North);
+        return _spatialSituation;
     }
 
     public void executeCommands(Commands commands)
     {
+        var newSpatialSituation = commands.executeWith(_spatialSituation);
+        if (_obstacleDetector.isThereAnObstacleAt(newSpatialSituation.Coordinates))
+        {
+            
+        }
+        if (_satellite.isExceedingTheBoundaries(newSpatialSituation.Coordinates))
+        {
+            
+        }
 
+        this._spatialSituation = newSpatialSituation;
     }
 }

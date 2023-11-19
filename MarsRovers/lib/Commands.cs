@@ -11,6 +11,6 @@ public class Commands
 
     public SpatialSituation executeWith(SpatialSituation spatialSituation)
     {
-        return new SpatialSituation(Coordinates.at(1, 0), Direction.North);
+        return new SpatialSituation(new Coordinates(0, 1), Direction.North);
     }
 }
