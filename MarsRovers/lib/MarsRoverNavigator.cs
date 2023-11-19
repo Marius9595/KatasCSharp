@@ -24,6 +24,7 @@ public class MarsRoverNavigator
             newSpatialSituation = command.executeFrom(newSpatialSituation);
             if (_obstacleDetector.isThereAnObstacleAt(newSpatialSituation.Coordinates))
             {
+                newSpatialSituation =  _spatialSituation;
             }
                 
             if (_satellite.isExceedingTheBoundaries(newSpatialSituation.Coordinates))

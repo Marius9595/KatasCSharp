@@ -122,4 +122,19 @@ public class MarsRoversNavigatorShould
             obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(finalCoordinates), Times.AtLeastOnce);
             satelliteMock.Verify(x => x.isExceedingTheBoundaries(finalCoordinates), Times.AtLeastOnce);
         }
+
+        [Fact]
+        public void stop_when_an_obstacle_is_detected_in_the_previous_coordinate_than_obstacle()
+        {
+            var obstacleCoordinates = new Coordinates(0,1);
+            obstacleDetectorMock.Setup(x => x.isThereAnObstacleAt(obstacleCoordinates)).Returns(true);
+            satelliteMock.Setup(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>())).Returns(false);
+            var marsRoverNavigator = new MarsRoverNavigator(obstacleDetectorMock.Object, satelliteMock.Object);
+            
+            marsRoverNavigator.executeCommands(new Commands(new List<Command> {new ForwardCommand()}));
+            
+            marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,0), Direction.North));
+            obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(obstacleCoordinates), Times.Once);
+            satelliteMock.Verify(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>()), Times.Once);
+        }
 }       
