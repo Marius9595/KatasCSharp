@@ -11,6 +11,12 @@ public class Commands
 
     public SpatialSituation executeWith(SpatialSituation spatialSituation)
     {
-        return new SpatialSituation(new Coordinates(0, 1), Direction.North);
+        var newSpatialSituation = spatialSituation;
+        foreach (var command in commands)
+        {
+            newSpatialSituation = command.executeWith(newSpatialSituation);
+        }
+        
+        return newSpatialSituation;
     }
 }
