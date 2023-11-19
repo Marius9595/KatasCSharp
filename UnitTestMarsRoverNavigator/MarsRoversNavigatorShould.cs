@@ -38,17 +38,36 @@ public class MarsRoversNavigatorShould
             satelliteMock.Verify(x => x.isExceedingTheBoundaries(nextForwardCoordinates), Times.Once);
         }
         
-        
-        [Fact]
-        public void change_its_orientation_to_the_next_left_hand_direction_when_it_turns_left()
+        public static IEnumerable<object[]> CommandsToTurnLeftMultipleTimes
+        {
+            get
+            {
+                var turnLeftOneTime = new List<Command> { new TurnLeftCommand() };
+                var turnLeftTwoTimes = new List<Command> {new TurnLeftCommand(), new TurnLeftCommand()};
+                var turnLeftThreeTimes = new List<Command> {new TurnLeftCommand(), new TurnLeftCommand(), new TurnLeftCommand()};
+                var turnLeftFourTimes = new List<Command> {new TurnLeftCommand(), new TurnLeftCommand(), new TurnLeftCommand(), new TurnLeftCommand()};
+                var turnLeftFiveTimes = new List<Command> {new TurnLeftCommand(), new TurnLeftCommand(), new TurnLeftCommand(), new TurnLeftCommand(), new TurnLeftCommand()};
+                
+                yield return new object[] { new Commands(turnLeftOneTime), Direction.West };
+                yield return new object[] { new Commands(turnLeftTwoTimes), Direction.South };
+                yield return new object[] { new Commands(turnLeftThreeTimes), Direction.East };
+                yield return new object[] { new Commands(turnLeftFourTimes), Direction.North };
+                yield return new object[] { new Commands(turnLeftFiveTimes), Direction.West };
+            }
+        }
+        [Theory]
+        [MemberData(nameof(CommandsToTurnLeftMultipleTimes))]
+        public void change_its_orientation_to_the_next_left_hand_direction_when_it_turns_left(
+            Commands turnLeftMultipleTimes, Direction finalOrientation
+            )
         {
             obstacleDetectorMock.Setup(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>())).Returns(false);
             satelliteMock.Setup(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>())).Returns(false);
             var marsRoverNavigator = new MarsRoverNavigator(obstacleDetectorMock.Object, satelliteMock.Object);
             
-            marsRoverNavigator.executeCommands(new Commands(new List<Command> {new TurnLeftCommand()}));
+            marsRoverNavigator.executeCommands(turnLeftMultipleTimes);
             
-            marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,0), Direction.West));
+            marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,0), finalOrientation));
             obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>()), Times.Once);
             satelliteMock.Verify(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>()), Times.Once);
         }
