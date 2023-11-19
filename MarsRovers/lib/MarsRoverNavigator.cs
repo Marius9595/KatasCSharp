@@ -7,9 +7,9 @@ public class MarsRoverNavigator
     private readonly Satellite _satellite;
     public MarsRoverNavigator(ObstacleDetector obstacleDetector, Satellite satellite)
     {
-        this._obstacleDetector = obstacleDetector;
-        this._satellite = satellite;
-        this._spatialSituation = new SpatialSituation(new Coordinates(0, 0), Direction.North);
+        _obstacleDetector = obstacleDetector;
+        _satellite = satellite;
+        _spatialSituation = new SpatialSituation(new Coordinates(0, 0), Direction.North);
     }
     public  SpatialSituation spatialSituation()
     {
