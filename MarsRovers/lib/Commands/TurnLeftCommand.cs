@@ -2,7 +2,7 @@ namespace MarsRovers.lib;
 
 public class TurnLeftCommand: Command
 {
-    public SpatialSituation executeWith(SpatialSituation spatialSituation)
+    public SpatialSituation executeFrom(SpatialSituation spatialSituation)
     {
         var coordinates = spatialSituation.Coordinates;
         var direction = spatialSituation.Orientation;

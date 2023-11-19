@@ -21,7 +21,7 @@ public class MarsRoverNavigator
         var newSpatialSituation = _spatialSituation;
         commands.forEach((command) =>
         {
-            newSpatialSituation = command.executeWith(newSpatialSituation);
+            newSpatialSituation = command.executeFrom(newSpatialSituation);
             if (_obstacleDetector.isThereAnObstacleAt(newSpatialSituation.Coordinates))
             {
             }

@@ -2,7 +2,7 @@ namespace MarsRovers.lib;
 
 public class ForwardCommand : Command
 {
-    public SpatialSituation executeWith(SpatialSituation spatialSituation)
+    public SpatialSituation executeFrom(SpatialSituation spatialSituation)
     {
         var coordinates = spatialSituation.Coordinates;
         var direction = spatialSituation.Orientation;
