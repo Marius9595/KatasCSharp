@@ -27,7 +27,7 @@ public class MarsRoversNavigatorShould
         public void determine_the_next_forward_coordinates()
         {
             var nextForwardCoordinates = new Coordinates(0,1);
-            obstacleDetectorMock.Setup(x => x.isThereAnObstacleAt(nextForwardCoordinates)).Returns(false);
+            obstacleDetectorMock.(x => x.isThereAnObstacleAt(nextForwardCoordinates)).Returns(false);
             satelliteMock.Setup(x => x.isExceedingTheBoundaries(nextForwardCoordinates)).Returns(false);
             var marsRoverNavigator = new MarsRoverNavigator(obstacleDetectorMock.Object, satelliteMock.Object);
             
@@ -136,5 +136,20 @@ public class MarsRoversNavigatorShould
             marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,0), Direction.North));
             obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(obstacleCoordinates), Times.Once);
             satelliteMock.Verify(x => x.isExceedingTheBoundaries(It.IsAny<Coordinates>()), Times.Once);
+        }
+        
+        [Fact]
+        public void allow_going_around_the_boundaries_set_by_satellite()
+        {
+            var coordinatesOutOfBoundaries = new Coordinates(0,3);
+            satelliteMock.Setup(x => x.isExceedingTheBoundaries(coordinatesOutOfBoundaries)).Returns(true);
+            obstacleDetectorMock.Setup(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>())).Returns(false);
+            var marsRoverNavigator = new MarsRoverNavigator(obstacleDetectorMock.Object, satelliteMock.Object);
+            
+            marsRoverNavigator.executeCommands(new Commands(new List<Command> {new ForwardCommand()}));
+            
+            marsRoverNavigator.spatialSituation().Should().BeEquivalentTo(new SpatialSituation(new Coordinates(0,0), Direction.North));
+            obstacleDetectorMock.Verify(x => x.isThereAnObstacleAt(It.IsAny<Coordinates>()), Times.AtLeastOnce);
+            satelliteMock.Verify(x => x.isExceedingTheBoundaries(coordinatesOutOfBoundaries), Times.AtLeastOnce);
         }
 }       

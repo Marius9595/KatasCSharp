@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRovers", "MarsRovers\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestMarsRoverNavigator", "UnitTestMarsRoverNavigator\UnitTestMarsRoverNavigator.csproj", "{62222FC5-7C01-4EF3-86A1-045442ED5463}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VendingMachineKata", "VendingMachineKata", "{37E4C0F1-EAC8-45A1-BD7C-EB29344BCD03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine", "VendingMachine\VendingMachine.csproj", "{41FBD2CE-1294-424E-A524-34586A5AC5EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +24,14 @@ Global
 		{62222FC5-7C01-4EF3-86A1-045442ED5463}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62222FC5-7C01-4EF3-86A1-045442ED5463}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62222FC5-7C01-4EF3-86A1-045442ED5463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41FBD2CE-1294-424E-A524-34586A5AC5EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41FBD2CE-1294-424E-A524-34586A5AC5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41FBD2CE-1294-424E-A524-34586A5AC5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41FBD2CE-1294-424E-A524-34586A5AC5EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{78803C13-7C68-49EE-99D9-C8AF7ED83FD3} = {20541C5D-987F-4B4D-B42B-73CE47720080}
 		{62222FC5-7C01-4EF3-86A1-045442ED5463} = {20541C5D-987F-4B4D-B42B-73CE47720080}
+		{41FBD2CE-1294-424E-A524-34586A5AC5EF} = {37E4C0F1-EAC8-45A1-BD7C-EB29344BCD03}
 	EndGlobalSection
 EndGlobal
