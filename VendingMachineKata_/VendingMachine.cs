@@ -13,7 +13,8 @@ class VendingMachine
 
     public void acceptCoin(object coin)
     {
-        
+        var coinIdentified = _coinSelector.identifyCoin(coin);
+        _display.show("0.05");
     }
 }
 
