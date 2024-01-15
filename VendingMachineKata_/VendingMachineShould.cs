@@ -1,3 +1,4 @@
+using FsCheck;
 using NSubstitute;
 
 namespace VendingMachineKata;
@@ -25,13 +26,19 @@ public class CoinSelector
 
 public class VendingMachineShould
 {
-    [Fact]
-    public void display_the_value_of_a_valid_coin_inserted_when_it_is_the_first_one()
+    [Theory]
+    [InlineData(5, 0.835, Coin.Nickle, "0.05")]
+    public void display_the_value_of_a_valid_coin_inserted_when_it_is_the_first_one(
+        decimal weight,
+        decimal diameter,
+        Coin coinIdentifiedExpected,
+        string messageToDisplayExpected
+    )
     {
         var displayMock = Substitute.For<DigitalDisplay>();
         var coinSelectorMock = Substitute.For<CoinSelector>();
-        var coin = new { weight = 5, diameter = 0.835 };
-        coinSelectorMock.identifyCoin(coin).Returns(Coin.Nickle);
+        var coin = new { weight = weight, diameter = diameter };
+        coinSelectorMock.identifyCoin(coin).Returns(coinIdentifiedExpected);
         var vendingMachine = new VendingMachine(
             displayMock,
             coinSelectorMock
@@ -40,6 +47,6 @@ public class VendingMachineShould
         vendingMachine.acceptCoin(coin);
 
         coinSelectorMock.Received().identifyCoin(coin);
-        displayMock.Received().show("0.05");
+        displayMock.Received().show(messageToDisplayExpected);
     }
 }
