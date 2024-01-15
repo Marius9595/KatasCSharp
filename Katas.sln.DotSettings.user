@@ -4,9 +4,12 @@
     &lt;TestId&gt;xUnit::62222FC5-7C01-4EF3-86A1-045442ED5463::net7.0::UnitTestMarsRoverNavigator.MarsRoversNavigatorShould&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=42b8cc9d_002D1656_002D45bf_002Db3aa_002D16b559588859/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="MarsRoversNavigatorShould" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=42b8cc9d_002D1656_002D45bf_002Db3aa_002D16b559588859/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="MarsRoversNavigatorShould" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::62222FC5-7C01-4EF3-86A1-045442ED5463::net7.0::UnitTestMarsRoverNavigator.MarsRoversNavigatorShould&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::41FBD2CE-1294-424E-A524-34586A5AC5EF::net7.0::VendingMachineKata.tests.features.AcceptCoinShould&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::41FBD2CE-1294-424E-A524-34586A5AC5EF::net7.0::VendingMachineKata.VendingMachineShould.identify_coins&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::41FBD2CE-1294-424E-A524-34586A5AC5EF::net7.0::VendingMachineKata.VendingMachineShould&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4a295fda_002De9fb_002D4a56_002D87cb_002D19a2140add3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="MarsRoversNavigatorShould #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
