@@ -4,6 +4,7 @@ class VendingMachine
 {
     private readonly DigitalDisplay _display;
     private readonly CoinSelector _coinSelector;
+    private double _amountOfMoney = 0.05;
 
     public VendingMachine(DigitalDisplay display, CoinSelector coinSelector)
     {
@@ -14,7 +15,13 @@ class VendingMachine
     public void acceptCoin(object coin)
     {
         var coinIdentified = _coinSelector.identifyCoin(coin);
-        _display.show("0.05");
+
+        if (coinIdentified == Coin.Dime)
+        {
+            _amountOfMoney = 0.10;
+        }
+        
+        _display.show(_amountOfMoney.ToString("0.00").Replace(",","."));
     }
 }
 
