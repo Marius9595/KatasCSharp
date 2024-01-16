@@ -13,7 +13,9 @@ public class DigitalDisplay
 
 public enum Coin
 {
-    Nickle = 5
+    Nickle = 5,
+    Dime = 10
+    
 }
 
 public class CoinSelector
@@ -28,6 +30,7 @@ public class VendingMachineShould
 {
     [Theory]
     [InlineData(5, 0.835, Coin.Nickle, "0.05")]
+    [InlineData(2, 0.179, Coin.Dime, "0.10")]
     public void display_the_value_of_a_valid_coin_inserted_when_it_is_the_first_one(
         decimal weight,
         decimal diameter,
