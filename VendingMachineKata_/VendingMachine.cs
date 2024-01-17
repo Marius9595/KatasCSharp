@@ -38,6 +38,8 @@ public class Coin
                 return new Coin(new Money(0.25));
             case CoinType.Nickle:
                 return new Coin(new Money(0.05));
+            case CoinType.Penny:
+                return new Coin(new Money(0.01));
             default:
                 throw new Exception("not implemented");
         }

@@ -15,8 +15,8 @@ public enum CoinType
 {
     Nickle = 5,
     Dime = 10,
-    Quarter = 25
-    
+    Quarter = 25,
+    Penny = 1
 }
 
 public class CoinSelector
@@ -73,5 +73,23 @@ public class VendingMachineShould
         coinSelectorMock.Received(2).identifyCoin(coin);
         displayMock.ReceivedWithAnyArgs(2);
         displayMock.Received(1).show("0.10");
+    }
+    
+    [Fact]
+    public void not_update_display_when_an_invalid_coin_is_inserted()
+    {
+        var displayMock = Substitute.For<DigitalDisplay>();
+        var coinSelectorMock = Substitute.For<CoinSelector>();
+        var invalidCoin = new { weight = 19.05, diameter = 2.50 };
+        coinSelectorMock.identifyCoin(invalidCoin).Returns((CoinType.Penny));
+        var vendingMachine = new VendingMachine(
+            displayMock,
+            coinSelectorMock    
+        );
+        
+        vendingMachine.acceptCoin(invalidCoin);
+
+        coinSelectorMock.Received().identifyCoin(invalidCoin);
+        displayMock.DidNotReceive().show(Arg.Any<string>());
     }
 }
