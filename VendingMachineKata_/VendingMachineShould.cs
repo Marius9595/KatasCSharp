@@ -58,7 +58,7 @@ public class VendingMachineShould
         var coinSelectorMock = Substitute.For<CoinSelector>();
         var coin = new { weight = weight, diameter = diameter };
         coinSelectorMock.identifyCoin(coin).Returns(coinTypeIdentifiedExpected);
-        var vendingMachine = new VendingMachine(
+        var vendingMachine = VendingMachine.startUp(
             displayMock,
             coinSelectorMock
         );
@@ -66,7 +66,8 @@ public class VendingMachineShould
         vendingMachine.acceptCoin(coin);
 
         coinSelectorMock.Received().identifyCoin(coin);
-        displayMock.Received().show(messageToDisplayExpected);
+        displayMock.Received(1).show("INSERT COIN");
+        displayMock.Received(1).show(messageToDisplayExpected);
     }
     
     [Fact]
@@ -76,7 +77,7 @@ public class VendingMachineShould
         var coinSelectorMock = Substitute.For<CoinSelector>();
         var coin = new { weight = 21.21, diameter = 5.00 };
         coinSelectorMock.identifyCoin(coin).Returns(CoinType.Nickle);
-        var vendingMachine = new VendingMachine(
+        var vendingMachine = VendingMachine.startUp(
             displayMock,
             coinSelectorMock
         );
@@ -86,6 +87,7 @@ public class VendingMachineShould
 
         coinSelectorMock.Received(2).identifyCoin(coin);
         displayMock.ReceivedWithAnyArgs(2);
+        displayMock.Received(1).show("INSERT COIN");
         displayMock.Received(1).show("0.10");
     }
     
@@ -96,14 +98,14 @@ public class VendingMachineShould
         var coinSelectorMock = Substitute.For<CoinSelector>();
         var invalidCoin = new { weight = 19.05, diameter = 2.50 };
         coinSelectorMock.identifyCoin(invalidCoin).Returns((CoinType.Penny));
-        var vendingMachine = new VendingMachine(
+        var vendingMachine = VendingMachine.startUp(
             displayMock,
             coinSelectorMock    
         );
         
         vendingMachine.acceptCoin(invalidCoin);
 
-        coinSelectorMock.Received().identifyCoin(invalidCoin);
-        displayMock.DidNotReceive().show(Arg.Any<string>());
+        coinSelectorMock.Received(1).identifyCoin(invalidCoin);
+        displayMock.Received(1).show("INSERT COIN");
     }
 }
