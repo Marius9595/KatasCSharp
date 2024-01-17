@@ -29,6 +29,20 @@ public class CoinSelector
 
 public class VendingMachineShould
 {
+    [Fact]
+    public void display_INSERT_COIN_when_no_coins_have_been_inserted()
+    {
+        var displayMock = Substitute.For<DigitalDisplay>();
+        var coinSelectorMock = Substitute.For<CoinSelector>(); 
+        
+        VendingMachine.startUp(
+            displayMock,
+            coinSelectorMock
+        );
+        
+        displayMock.Received().show("INSERT COIN");
+    }
+    
     [Theory]
     [InlineData(5.00, 21.21, CoinType.Nickle, "0.05")]
     [InlineData(2.26, 17.91, CoinType.Dime, "0.10")]
