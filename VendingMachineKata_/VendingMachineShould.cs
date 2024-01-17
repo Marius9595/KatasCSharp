@@ -29,6 +29,7 @@ public class CoinSelector
 
 public class VendingMachineShould
 {
+    private readonly string _insertCoinMessage = "INSERT COIN (0.00$)";
     [Fact]
     public void display_INSERT_COIN_when_no_coins_have_been_inserted()
     {
@@ -40,7 +41,7 @@ public class VendingMachineShould
             coinSelectorMock
         );
         
-        displayMock.Received().show("INSERT COIN");
+        displayMock.Received().show(_insertCoinMessage);
     }
     
     [Theory]
@@ -66,7 +67,7 @@ public class VendingMachineShould
         vendingMachine.acceptCoin(coin);
 
         coinSelectorMock.Received().identifyCoin(coin);
-        displayMock.Received(1).show("INSERT COIN");
+        displayMock.Received(1).show(_insertCoinMessage);
         displayMock.Received(1).show(messageToDisplayExpected);
     }
     
@@ -87,7 +88,7 @@ public class VendingMachineShould
 
         coinSelectorMock.Received(2).identifyCoin(coin);
         displayMock.ReceivedWithAnyArgs(2);
-        displayMock.Received(1).show("INSERT COIN");
+        displayMock.Received(1).show(_insertCoinMessage);
         displayMock.Received(1).show("0.10");
     }
     
@@ -106,6 +107,7 @@ public class VendingMachineShould
         vendingMachine.acceptCoin(invalidCoin);
 
         coinSelectorMock.Received(1).identifyCoin(invalidCoin);
-        displayMock.Received(1).show("INSERT COIN");
+        displayMock.Received(1).show(_insertCoinMessage);
     }
+    
 }

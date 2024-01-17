@@ -17,7 +17,7 @@ class VendingMachine
     
     public static VendingMachine startUp(DigitalDisplay display, CoinSelector coinSelector)
     {
-        display.show("INSERT COIN");
+        display.show("INSERT COIN (0.00$)");
         return new VendingMachine(display, coinSelector);
     }
 
