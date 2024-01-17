@@ -54,4 +54,24 @@ public class VendingMachineShould
         coinSelectorMock.Received().identifyCoin(coin);
         displayMock.Received().show(messageToDisplayExpected);
     }
+    
+    [Fact]
+    public void update_the_display_when_consecutive_valid_coins_are_inserted_showing_the_total_amount_of_money_after_each_coin_inserted()
+    {
+        var displayMock = Substitute.For<DigitalDisplay>();
+        var coinSelectorMock = Substitute.For<CoinSelector>();
+        var coin = new { weight = 21.21, diameter = 5.00 };
+        coinSelectorMock.identifyCoin(coin).Returns(Coin.Nickle);
+        var vendingMachine = new VendingMachine(
+            displayMock,
+            coinSelectorMock
+        );
+        
+        vendingMachine.acceptCoin(coin);
+        vendingMachine.acceptCoin(coin);
+
+        coinSelectorMock.Received(2).identifyCoin(coin);
+        displayMock.ReceivedWithAnyArgs(2);
+        displayMock.Received(1).show("0.10");
+    }
 }
