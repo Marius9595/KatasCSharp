@@ -14,6 +14,12 @@ class VendingMachine
         _display = display;
         _coinSelector = coinSelector;
     }
+    
+    public static VendingMachine startUp(DigitalDisplay display, CoinSelector coinSelector)
+    {
+        display.show("INSERT COIN");
+        return new VendingMachine(display, coinSelector);
+    }
 
     public void acceptCoin(object coinInserted)
     {

@@ -20,7 +20,7 @@
     &lt;TestId&gt;xUnit::41FBD2CE-1294-424E-A524-34586A5AC5EF::net7.0::VendingMachineKata.VendingMachineShould&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8ee75c37_002Df0ef_002D424d_002D88c7_002D3856f6af2bb6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="VendingMachineShould" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8ee75c37_002Df0ef_002D424d_002D88c7_002D3856f6af2bb6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="VendingMachineShould" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::41FBD2CE-1294-424E-A524-34586A5AC5EF::net7.0::VendingMachineKata.VendingMachineShould&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
@@ -30,5 +30,10 @@
     &lt;TestId&gt;xUnit::62222FC5-7C01-4EF3-86A1-045442ED5463::net7.0::UnitTestMarsRoverNavigator.MarsRoversNavigatorShould&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::41FBD2CE-1294-424E-A524-34586A5AC5EF::net7.0::VendingMachineKata.VendingMachineShould.display_the_value_of_a_valid_coin_inserted_when_it_is_the_first_one&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::41FBD2CE-1294-424E-A524-34586A5AC5EF::net7.0::VendingMachineKata.VendingMachineShould.update_the_display_when_consecutive_valid_coins_are_inserted_showing_the_total_amount_of_money_after_each_coin_inserted&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fe6b15f5_002D6bdd_002D4c0d_002D9dce_002D29d2cd6071a2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="VendingMachineShould #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::41FBD2CE-1294-424E-A524-34586A5AC5EF::net7.0::VendingMachineKata.VendingMachineShould&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
