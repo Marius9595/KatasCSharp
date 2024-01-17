@@ -1,10 +1,13 @@
+using System.Net.Sockets;
+using Xunit.Sdk;
+
 namespace VendingMachineKata;
 
 class VendingMachine
 {
     private readonly DigitalDisplay _display;
     private readonly CoinSelector _coinSelector;
-    private double _amountOfMoney = 0;
+    private Money _amountOfMoney = new Money(0);
 
     public VendingMachine(DigitalDisplay display, CoinSelector coinSelector)
     {
@@ -12,22 +15,59 @@ class VendingMachine
         _coinSelector = coinSelector;
     }
 
-    public void acceptCoin(object coin)
+    public void acceptCoin(object coinInserted)
     {
-        var coinIdentified = _coinSelector.identifyCoin(coin);
-
-        if (coinIdentified == Coin.Dime)
-        {
-            _amountOfMoney += 0.10;
-        }else if(Coin.Quarter == coinIdentified)
-        {
-            _amountOfMoney += 0.25;
-        }else if(Coin.Nickle == coinIdentified)
-        {
-            _amountOfMoney += 0.05;
-        }
-        
-        _display.show(_amountOfMoney.ToString("0.00").Replace(",","."));
+        var coinIdentified = _coinSelector.identifyCoin(coinInserted);
+        var coin = Coin.create(coinIdentified);
+        _amountOfMoney = _amountOfMoney.sum(coin.value);
+        _display.show(_amountOfMoney.ToString());
     }
 }
 
+public class Coin
+{
+    private readonly Money _value;
+    
+    public static Coin create(CoinType coinType) 
+    {
+        switch (coinType)
+        {
+            case CoinType.Dime:
+                return new Coin(new Money(0.10));
+            case CoinType.Quarter:
+                return new Coin(new Money(0.25));
+            case CoinType.Nickle:
+                return new Coin(new Money(0.05));
+            default:
+                throw new Exception("not implemented");
+        }
+    }
+    
+    private Coin(Money value)
+    {
+        _value = value;
+    }
+
+    public Money value => _value;
+}
+
+
+public class Money
+{
+    private readonly double _value;
+
+    public Money(double value)
+    {
+        _value = value;
+    }
+    
+    public Money sum(Money money)
+    {
+        return new Money(_value + money._value);
+    }
+
+    public override string ToString()
+    {
+        return _value.ToString("0.00").Replace(",",".");
+    }
+}

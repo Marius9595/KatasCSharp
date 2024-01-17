@@ -11,7 +11,7 @@ public class DigitalDisplay
     }
 }
 
-public enum Coin
+public enum CoinType
 {
     Nickle = 5,
     Dime = 10,
@@ -21,7 +21,7 @@ public enum Coin
 
 public class CoinSelector
 {
-    public virtual Coin identifyCoin(object coin)
+    public virtual CoinType identifyCoin(object coin)
     {
         throw new NotImplementedException();
     }
@@ -30,20 +30,20 @@ public class CoinSelector
 public class VendingMachineShould
 {
     [Theory]
-    [InlineData(5.00, 21.21, Coin.Nickle, "0.05")]
-    [InlineData(2.26, 17.91, Coin.Dime, "0.10")]
-    [InlineData(5.67, 24.26, Coin.Quarter, "0.25")]
+    [InlineData(5.00, 21.21, CoinType.Nickle, "0.05")]
+    [InlineData(2.26, 17.91, CoinType.Dime, "0.10")]
+    [InlineData(5.67, 24.26, CoinType.Quarter, "0.25")]
     public void display_the_value_of_a_valid_coin_inserted_when_it_is_the_first_one(
         decimal weight,
         decimal diameter,
-        Coin coinIdentifiedExpected,
+        CoinType coinTypeIdentifiedExpected,
         string messageToDisplayExpected
     )
     {
         var displayMock = Substitute.For<DigitalDisplay>();
         var coinSelectorMock = Substitute.For<CoinSelector>();
         var coin = new { weight = weight, diameter = diameter };
-        coinSelectorMock.identifyCoin(coin).Returns(coinIdentifiedExpected);
+        coinSelectorMock.identifyCoin(coin).Returns(coinTypeIdentifiedExpected);
         var vendingMachine = new VendingMachine(
             displayMock,
             coinSelectorMock
@@ -61,7 +61,7 @@ public class VendingMachineShould
         var displayMock = Substitute.For<DigitalDisplay>();
         var coinSelectorMock = Substitute.For<CoinSelector>();
         var coin = new { weight = 21.21, diameter = 5.00 };
-        coinSelectorMock.identifyCoin(coin).Returns(Coin.Nickle);
+        coinSelectorMock.identifyCoin(coin).Returns(CoinType.Nickle);
         var vendingMachine = new VendingMachine(
             displayMock,
             coinSelectorMock
