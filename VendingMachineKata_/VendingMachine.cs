@@ -18,6 +18,11 @@ class VendingMachine
     public void acceptCoin(object coinInserted)
     {
         var coinIdentified = _coinSelector.identifyCoin(coinInserted);
+        if (coinIdentified == CoinType.Penny)
+        {
+            return;
+        }
+        
         var coin = Coin.create(coinIdentified);
         _amountOfMoney = _amountOfMoney.sum(coin.value);
         _display.show(_amountOfMoney.ToString());
