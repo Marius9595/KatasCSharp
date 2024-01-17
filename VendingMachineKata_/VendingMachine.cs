@@ -19,6 +19,9 @@ class VendingMachine
         if (coinIdentified == Coin.Dime)
         {
             _amountOfMoney = 0.10;
+        }else if(Coin.Quarter == coinIdentified)
+        {
+            _amountOfMoney = 0.25;
         }
         
         _display.show(_amountOfMoney.ToString("0.00").Replace(",","."));
