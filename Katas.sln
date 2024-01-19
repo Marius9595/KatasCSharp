@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestMarsRoverNavigator"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VendingMachineKata", "VendingMachineKata", "{37E4C0F1-EAC8-45A1-BD7C-EB29344BCD03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineKata_", "VendingMachineKata_\VendingMachineKata_.csproj", "{41FBD2CE-1294-424E-A524-34586A5AC5EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineKataIteration", "VendingMachineKataIteration\VendingMachineKataIteration.csproj", "{41FBD2CE-1294-424E-A524-34586A5AC5EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

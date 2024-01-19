@@ -1,6 +1,3 @@
-using System.Net.Sockets;
-using Xunit.Sdk;
-
 namespace VendingMachineKata;
 
 class VendingMachine
@@ -8,6 +5,7 @@ class VendingMachine
     private readonly DigitalDisplay _display;
     private readonly CoinSelector _coinSelector;
     private Money _amountOfMoney = new Money(0);
+    private static List<object> _products;
 
     public VendingMachine(DigitalDisplay display, CoinSelector coinSelector)
     {
@@ -20,6 +18,13 @@ class VendingMachine
         display.show("INSERT COIN (0.00$)");
         return new VendingMachine(display, coinSelector);
     }
+    
+    public static VendingMachine startUp(DigitalDisplay display, CoinSelector coinSelector, List<object> products)
+    {
+        _products = products; 
+        return startUp(display, coinSelector);
+    }
+
 
     public void acceptCoin(object coinInserted)
     {

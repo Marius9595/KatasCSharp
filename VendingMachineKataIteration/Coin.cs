@@ -1,4 +1,6 @@
-namespace VendingMachineKata;
+using VendingMachineKata;
+
+namespace VendingMachineKataIteration;
 
 public class Coin
 {

@@ -1,4 +1,4 @@
-    namespace VendingMachineKata;
+namespace VendingMachineKataIteration;
 
 public class Money
 {
