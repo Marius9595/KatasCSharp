@@ -1,5 +1,6 @@
 using FsCheck;
 using NSubstitute;
+using NSubstitute.ReceivedExtensions;
 
 namespace VendingMachineKata;
 
@@ -101,7 +102,7 @@ public class VendingMachineShould
         coinSelectorMock.identifyCoin(invalidCoin).Returns((CoinType.Penny));
         var vendingMachine = VendingMachine.startUp(
             displayMock,
-            coinSelectorMock    
+            coinSelectorMock
         );
         
         vendingMachine.acceptCoin(invalidCoin);
@@ -109,5 +110,9 @@ public class VendingMachineShould
         coinSelectorMock.Received(1).identifyCoin(invalidCoin);
         displayMock.Received(1).show(_insertCoinMessage);
     }
-    
+
+    [Fact]
+    public void display_the_price_of_an_product_select_while_there_is_not_enough_money()
+    {
+    }
 }
