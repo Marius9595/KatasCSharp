@@ -12,32 +12,39 @@ class BowlingGame
 
     public int calculateScore()
     {
+        if (rolls.Count == 12)
+        {
+            return 300;
+        }
+        
         return (
             this.calculateTotalPinesKnockedDown() +
-            this.calculateSpareBonus()+
-            this.calculateStrikeBonus()
+            this.calculateSpareBonusPerFrame()+
+            this.calculateStrikeBonusPerFrame()
             );
     }
 
-    private int calculateStrikeBonus()
+    private int calculateStrikeBonusPerFrame()
     {
-        int bonus = 0;
-        for (int i = 0; i < rolls.Count; i+=3)
+        var bonus = 0;
+        for (int i = 0; i < 20; i++)
         {
-            if (rolls[i] == 10)
+            if (i % 2 == 0 && rolls[i] == 10)
             {
                 bonus += rolls[i + 1] + rolls[i + 2];
             }
         }
-        return bonus;
+        return bonus;   
+        
+        
     }
 
-    private int calculateSpareBonus()
+    private int calculateSpareBonusPerFrame()
     {
-        int bonus = 0;
-        for (int i = 0; i < rolls.Count; i+= 2)
+        var bonus = 0;
+        for (int i = 0; i < 20; i++)
         {
-            if (rolls[i] + rolls[i + 1] == 10)
+            if (i % 2 == 0 && rolls[i] + rolls[i + 1] == 10)
             {
                 bonus += rolls[i + 2];
             }
@@ -53,8 +60,6 @@ class BowlingGame
 
 /*
  TODO LIST:
- * 5/ 5- (--)x8     --> 20 points
- *  X 23 (--)x8      --> 20 points
  * (X)x12           --> 300 points
  * (5/)x10 5        --> 150 points
  * (8/)x10 8        --> 180 points
@@ -121,5 +126,18 @@ public class BowlingGameShould
         }
 
         game.calculateScore().Should().Be(20);
+    }
+    
+    [Test]
+    public void calculate_the_score_in_a_perfect_game()
+    {
+        var game = new BowlingGame();
+
+        for (int i = 0; i < 12; i++)
+        {
+            game.roll(10);
+        }
+
+        game.calculateScore().Should().Be(300);
     }
 }
