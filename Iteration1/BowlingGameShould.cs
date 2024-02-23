@@ -4,13 +4,14 @@ namespace Iteration1;
 
 class BowlingGame
 {
+    
     public void roll(int pins)
     {
     }
 
     public int calculateScore()
     {
-        throw new NotImplementedException();
+       return 0;
     }
 }
 
