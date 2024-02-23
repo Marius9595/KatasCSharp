@@ -14,8 +14,22 @@ class BowlingGame
     {
         return (
             this.calculateTotalPinesKnockedDown() +
-            this.calculateSpareBonus()
+            this.calculateSpareBonus()+
+            this.calculateStrikeBonus()
             );
+    }
+
+    private int calculateStrikeBonus()
+    {
+        int bonus = 0;
+        for (int i = 0; i < rolls.Count; i+=3)
+        {
+            if (rolls[i] == 10)
+            {
+                bonus += rolls[i + 1] + rolls[i + 2];
+            }
+        }
+        return bonus;
     }
 
     private int calculateSpareBonus()
@@ -39,7 +53,6 @@ class BowlingGame
 
 /*
  TODO LIST:
- * (11)x20          --> 10 points
  * 5/ 5- (--)x8     --> 20 points
  *  X 23 (--)x8      --> 20 points
  * (X)x12           --> 300 points
@@ -86,6 +99,22 @@ public class BowlingGameShould
         game.roll(5);
         game.roll(5);
         game.roll(5);
+        for (int i = 0; i < 17; i++)
+        {
+            game.roll(0);
+        }
+
+        game.calculateScore().Should().Be(20);
+    }
+    
+    [Test]
+    public void calculate_the_score_when_spare_and_not_all_pines_were_knocked_down_in_the_two_following_rolls()
+    {
+        var game = new BowlingGame();
+        
+        game.roll(10);
+        game.roll(2);
+        game.roll(3);
         for (int i = 0; i < 17; i++)
         {
             game.roll(0);
