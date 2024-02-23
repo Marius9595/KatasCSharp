@@ -4,14 +4,15 @@ namespace Iteration1;
 
 class BowlingGame
 {
-    
+    private List<int> rolls = new List<int>();
     public void roll(int pins)
     {
+        rolls.Add(pins);
     }
 
     public int calculateScore()
     {
-       return 0;
+        return rolls.Sum( x => x  );
     }
 }
 
