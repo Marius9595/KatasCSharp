@@ -17,7 +17,6 @@ class BowlingGame
 
 /*
  TODO LIST:
- * (--)X10          --> 0 points
  * (11)x20          --> 10 points
  * 5/ 5- (--)x8     --> 20 points
  *  X 23 (--)x8      --> 20 points
@@ -43,5 +42,17 @@ public class BowlingGameShould
         }
 
         game.calculateScore().Should().Be(0);
+    }
+    
+    [Test]
+    public void calculate_the_score_where_in_all_rolls_all_pines_were_not_knocked_down()
+    {
+        var game = new BowlingGame();
+        for (int i = 0; i < 20; i++)
+        {
+            game.roll(1);
+        }
+
+        game.calculateScore().Should().Be(20);
     }
 }
