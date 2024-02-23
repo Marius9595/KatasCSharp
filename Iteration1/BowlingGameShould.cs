@@ -12,7 +12,28 @@ class BowlingGame
 
     public int calculateScore()
     {
-        return rolls.Sum( x => x  );
+        return (
+            this.calculateTotalPinesKnockedDown() +
+            this.calculateSpareBonus()
+            );
+    }
+
+    private int calculateSpareBonus()
+    {
+        int bonus = 0;
+        for (int i = 0; i < rolls.Count; i+= 2)
+        {
+            if (rolls[i] + rolls[i + 1] == 10)
+            {
+                bonus += rolls[i + 2];
+            }
+        }
+        return bonus;
+    }
+
+    private int calculateTotalPinesKnockedDown()
+    {
+        return rolls.Sum();
     }
 }
 
@@ -52,6 +73,22 @@ public class BowlingGameShould
         for (int i = 0; i < 20; i++)
         {
             game.roll(1);
+        }
+
+        game.calculateScore().Should().Be(20);
+    }
+    
+    [Test]
+    public void calculate_the_score_when_spare_and_some_pines_are_knocked_down_in_the_following_roll()
+    {
+        var game = new BowlingGame();
+        
+        game.roll(5);
+        game.roll(5);
+        game.roll(5);
+        for (int i = 0; i < 17; i++)
+        {
+            game.roll(0);
         }
 
         game.calculateScore().Should().Be(20);
