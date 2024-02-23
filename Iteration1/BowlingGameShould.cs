@@ -140,4 +140,38 @@ public class BowlingGameShould
 
         game.calculateScore().Should().Be(300);
     }
+    
+    [Test]
+    public void calculate_score_when_there_is_an_sstrike_in_the_final_frame_with_extra_rolls()
+    {
+        var game = new BowlingGame();
+
+        for (int i = 0; i < 18; i++)
+        {
+            game.roll(0);
+        }
+        game.roll(10);
+        game.roll(2);
+        game.roll(5);
+        
+
+        game.calculateScore().Should().Be(24);
+    }
+    
+    [Test]
+    public void calculate_score_when_there_is_an_spare_in_the_final_frame_with_extra_roll()
+    {
+        var game = new BowlingGame();
+
+        for (int i = 0; i < 18; i++)
+        {
+            game.roll(0);
+        }
+        game.roll(5);
+        game.roll(5);
+        game.roll(2);
+        
+
+        game.calculateScore().Should().Be(14);
+    }
 }
