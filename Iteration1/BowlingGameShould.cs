@@ -18,10 +18,11 @@ class BowlingGame
             this.calculateSpareBonusPerFrame() +
             this.calculateStrikeBonusPerFrame()
         );
-        
-        if (totalScore > 300)
+
+        int maxScoreAllowed = 300;
+        if (totalScore > maxScoreAllowed)
         {
-            return 300;
+            return maxScoreAllowed;
         }
         
         return totalScore;
@@ -32,7 +33,8 @@ class BowlingGame
         var strikeBonus = 0;
         for (int i = 0; i < rolls.Count; i++)
         {
-            if (i + 2 < rolls.Count && rolls[i] == 10)
+            bool isStrike = i + 2 < rolls.Count && rolls[i] == 10;
+            if (isStrike)
             {
                 strikeBonus += rolls[i + 1] + rolls[i + 2];
             }
@@ -46,7 +48,8 @@ class BowlingGame
         var spareBonus = 0;
         for (int i = 0; i < rolls.Count; i+=2)
         {
-            if (i + 2 < rolls.Count &&  rolls[i] + rolls[i + 1] == 10)
+            bool isSpare = i + 2 < rolls.Count &&  rolls[i] + rolls[i + 1] == 10;
+            if (isSpare)
             {
                 spareBonus += rolls[i + 2];
             }
